@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test Countdown Timer</title>
+	<style type="text/css">
+		#timer{
+			font-size: 72px;
+			margin: auto;
+			text-align: center;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<div id="timer">Timer</div>
+	<button onclick="pause()">"Pause Timer, I'm so excited!"</button>
+	<button onclick="start()">"Start Timer, I'm so excited!"</button>
+
+<script type="text/javascript">
+	var now = Date.now();
+	console.log(now/1000);
+	var christmasDay = new Date('December 25, 2016 00:00').getTime(); 
+	console.log(christmasDay/1000);
+	var secondsTilChristmas = Math.floor((christmasDay - now)/1000); 
+	console.log(secondsTilChristmas);
+
+	var minutesTilChristmas = secondsTilChristmas/60;
+	console.log(minutesTilChristmas);
+	var hoursTilChristmas = minutesTilChristmas/60; 
+	console.log(hoursTilChristmas);
+	var daysTilChristmas = hoursTilChristmas/24;
+	console.log(daysTilChristmas);
+
+	var timerDiv = document.getElementById('timer'); 
+	timerDiv.innerHTML = secondsTilChristmas + " seconds until Christmas";
+
+
+	//setInterval(functionTORUN(){}, how often in milliseconds)
+	var counterInterval = setInterval(updateCounter, 1000); //every 1 second, js, run this function: updateCounter
+
+function updateCounter(){
+	//get new timestamp (ms since 1970)
+	var now = Date.now();
+	var newSecondsTilChristmas = ((christmasDay - now)/1000);
+	timerDiv.innerHTML = newSecondsTilChristmas + " seconds until Christmas!";
+};
+
+function pause(){
+	clearInterval(counterInterval);
+};
+
+function start(){
+	counterInterval = setInterval(updateCounter,1000)
+};
+
+// var counterInterval;
+
+
+	//update the counter each new second :
+	//recalculate the new distance between now and christmas
+	//update the HTML with new number	
+
+</script>
+
+</body>
+</html>
